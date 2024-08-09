@@ -1,8 +1,5 @@
-## What is this?
-
-Just a empty Laravel proyect, with JWT installed and configured.
-
-Clone, make a .env file, and then:
+## Uso
+Clonar, crear un archivo .env, y ejecutar
 * `composer install`
 * `php artisan keys:generate`
 * `php artisan migrate`
@@ -10,17 +7,19 @@ Clone, make a .env file, and then:
 * `php artisan jwt:secret`
 
 
-To create an User for testing, if you still don't know how to do it run this crap on Tinker (`php artisan tinker`):
+Para crear un usuario, ejecutar `php artisan tinker` y ahi adentro:
 
-`User::create(["name"=> "larainfo","email"=>"larainfo@gmail.com","password"=>bcrypt("123456")]);`
+`User::create(["name"=> "user","password"=>bcrypt("12345678")]);`
 
-Then, do some `php artisan serve` magic, and test this curl:
+Luego `php artisan serve`, y probar con este curl (o como venga):
 
-```
+```bash
 curl --request POST \
   --url http://localhost:8000/api/auth/login \
-  --header 'Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2NzE4ODk5NiwiZXhwIjoxNjY3MTkyNTk2LCJuYmYiOjE2NjcxODg5OTYsImp0aSI6IksyMkNQQmxiejlEZHR6cWQiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.dMrJGOT5EbBIvqd-Ac7FvYXAO92JHgERKyzb2cdPYfw' \
-  --header 'Content-Type: multipart/form-data' \
-  --form name=larainfo \
-  --form password=123456
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  -d '{
+    "name" : "user",
+    "password : "12345678"
+  }'
   ```
