@@ -16,10 +16,14 @@ Luego `php artisan serve`, y probar con este curl (o como venga):
 ```bash
 curl --request POST \
   --url http://localhost:8000/api/auth/login \
-  --header 'Content-Type: application/json' \
   --header 'Accept: application/json' \
-  -d '{
-    "name" : "user",
-    "password : "12345678"
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name" : "frontend",
+    "password" : "12345678"
   }'
   ```
+
+## Consideraciones
+
+La tabla de usuarios no se llama `users`, sino que `api_users`. Esto permite en otro proyecto usar la tabla users con la misma base de datos, por ejemplo.
